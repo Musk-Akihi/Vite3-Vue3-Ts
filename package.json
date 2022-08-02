@@ -34,8 +34,8 @@
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
-      "npm run lint",
-      "npm run prettier"
+      "yarn lint",
+      "yarn prettier"
     ]
   }
 }
