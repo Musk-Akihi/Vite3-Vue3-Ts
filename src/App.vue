@@ -7,6 +7,8 @@
   </div>
 </template>
 
+<script setup lang="ts"></script>
+
 <style lang="scss" scoped>
 .app {
   color: $color-blue;
