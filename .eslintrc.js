@@ -44,10 +44,10 @@ module.exports = {
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    'prettier/prettier': 'error',
+    'prettier/prettier': ['error'],
     semi: ['warn', 'never'], // 禁止尾部使用分号
     // 'no-console': 'warn', // 禁止出现console
-    'no-debugger': 'warn', // 禁止出现debugger
+    // 'no-debugger': 'warn', // 禁止出现debugger
     'no-duplicate-case': 'warn', // 禁止出现重复case
     'no-empty': 'warn', // 禁止出现空语句块
     'no-extra-parens': 'warn', // 禁止不必要的括号
