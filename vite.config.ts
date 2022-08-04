@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [vue(), eslintPlugin()],
   envDir: './env',
   resolve: {
+    // 配置别名
     alias: {
       '@': path.resolve(__dirname, 'src')
     }
@@ -19,5 +20,13 @@ export default defineConfig({
         additionalData: '@import "@/assets/css/main.scss";'
       }
     }
+  },
+  // 开发服务器选项
+  server: {
+    host: '0.0.0.0',
+    port: 3000,
+    open: true,
+    https: false,
+    proxy: {}
   }
 })
