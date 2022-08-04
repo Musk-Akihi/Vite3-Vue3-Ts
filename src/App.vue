@@ -7,7 +7,10 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+console.log(import.meta.env)
+console.log('👻👻👻👻👻👻👻👻👻👻')
+</script>
 
 <style lang="scss" scoped>
 .app {
