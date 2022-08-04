@@ -6,6 +6,7 @@ import path from 'path'
 // https://cn.vitejs.dev/config
 export default defineConfig({
   plugins: [vue(), eslintPlugin()],
+  envDir: './env',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src')
