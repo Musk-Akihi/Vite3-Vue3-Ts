@@ -1,8 +1,8 @@
 import { defineConfig, loadEnv, UserConfig, ConfigEnv } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import eslintPlugin from 'vite-plugin-eslint'
 import { resolve } from 'path'
+import { wrapperEnv } from './build/utils'
 import { createProxy } from './build/vite/proxy'
+import { createVitePlugins } from './build/vite/plugin'
 
 const root = process.cwd()
 
@@ -14,16 +14,15 @@ function pathResolve(dir: string) {
 export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, './env')
 
-  const { VITE_PUBLIC_PATH, VITE_DROP_CONSOLE, VITE_GLOB_API_URL } = env
+  const viteEnv = wrapperEnv(env)
 
-  const VITE_DROP_DEBUGGER = VITE_DROP_CONSOLE === 'true' ? true : false
+  const { VITE_PUBLIC_PATH, VITE_DROP_CONSOLE, VITE_GLOB_API_URL } = viteEnv
 
   const isBuild = command === 'build'
 
   return {
     base: VITE_PUBLIC_PATH,
     root,
-    plugins: [vue(), eslintPlugin()],
     envDir: './env',
     resolve: {
       // 配置别名
@@ -64,10 +63,11 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
       minify: 'terser',
       terserOptions: {
         compress: {
-          drop_console: isBuild && VITE_DROP_DEBUGGER,
-          drop_debugger: isBuild && VITE_DROP_DEBUGGER
+          drop_console: isBuild && VITE_DROP_CONSOLE,
+          drop_debugger: isBuild && VITE_DROP_CONSOLE
         }
       }
-    }
+    },
+    plugins: createVitePlugins(viteEnv, isBuild)
   }
 })
