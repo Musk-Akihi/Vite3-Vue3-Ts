@@ -5,6 +5,7 @@ import eslintPlugin from 'vite-plugin-eslint'
 import legacy from '@vitejs/plugin-legacy'
 import { configCompressPlugin } from './compress'
 import { configVisualizerPlugin } from './visualizer'
+import { configImageminPlugin } from './imagemin'
 
 export function createVitePlugins(env: ViteEnv, isBuild: boolean) {
   const vitePlugins: (PluginOption | PluginOption[])[] = [vue(), vueJsx(), eslintPlugin()]
@@ -20,6 +21,12 @@ export function createVitePlugins(env: ViteEnv, isBuild: boolean) {
      * 使用 gzip 或者 brotli 来压缩资源
      */
     vitePlugins.push(configCompressPlugin('gzip'))
+
+    /**
+     * vite-plugin-imagemin
+     * 压缩图片资源文件
+     */
+    vitePlugins.push(configImageminPlugin())
   }
 
   /**
